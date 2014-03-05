@@ -1,0 +1,8 @@
+.DS_Store
+*.sw[op]
+/.bundle
+/.sass-cache
+/log/*.log
+/public/stylesheets
+/tmp
+

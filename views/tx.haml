@@ -1,0 +1,73 @@
+.tx
+  .page-header
+    %h1
+      Transaction
+      %small
+        = @tx.id
+
+  %section
+    %table.table.table-striped.table-hover
+      %tr
+        %td Number of Inputs
+        %td= @tx.in.size
+      %tr
+        %td Total In
+        %td= render_btc @tx.total_in
+      %tr
+        %td Number of Outputs
+        %td= @tx.out.size
+      %tr
+        %td Total Out
+        %td= render_btc @tx.total_out
+      %tr
+        %td Fee
+        %td= render_btc @tx.fee
+
+  %section
+    %h2 Inputs
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th Prev Tx
+          %th Prev Tx Idx
+          %th Amount
+          %th Estimated From Address
+          %th Type
+          %th ScriptSig
+      %tbody
+        - @tx.in.each do |txin|
+          %tr
+            %td
+              %a{href: "/tx/#{txin.id}"}= txin.id
+            %td= txin.idx
+            %td ?
+            %td= txin.estimated_from_address
+            %td ?
+            %td ?
+
+  %section
+    %h2 Outputs
+    %table.table.table-striped.table-hover
+      %thead
+        %tr
+          %th Idx
+          %th Redeemed at input
+          %th Amount
+          %th To Addresses
+          %th Type
+          %th ScriptPubKey
+      %tbody
+        - @tx.out.each do |txout|
+          %tr
+            %td= txout.idx
+            %td ?
+            %td= render_btc txout.amount
+            %td= txout.addresses.join(', ')
+            %td ?
+            %td ?
+
+  %section
+    %h2 Raw Tx
+    %pre
+      = preserve JSON.pretty_generate @tx.raw
+
