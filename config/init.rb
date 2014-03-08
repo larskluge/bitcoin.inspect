@@ -15,3 +15,5 @@ Dir['./config/initializers/*.rb', './lib/*.rb', './models/*.rb'].each do |file|
   also_reload file
 end
 
+include BtcUtils::Models
+
