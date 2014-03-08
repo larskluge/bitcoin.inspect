@@ -50,7 +50,7 @@
             %td
               %a{href: "/tx/#{txin.id}"}= txin.id
             %td= txin.idx
-            %td ?
+            %td= render_btc txin.amount
             %td= txin.estimated_from_address
             %td ?
             %td ?
