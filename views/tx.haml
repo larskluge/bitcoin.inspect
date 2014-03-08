@@ -5,26 +5,36 @@
       %small
         = @tx.id
 
-  %section
-    %table.table.table-striped.table-hover
-      %tr
-        %td Number of Inputs
-        %td= @tx.in.size
-      %tr
-        %td Total In
-        %td= render_btc @tx.total_in
-      %tr
-        %td Number of Outputs
-        %td= @tx.out.size
-      %tr
-        %td Total Out
-        %td= render_btc @tx.total_out
-      %tr
-        %td Fee
-        %td= render_btc @tx.fee
+  %section.well
+    .row
+      .col-sm-1.text-right
+        %strong Total In
+      .col-sm-11
+        %p= render_btc @tx.total_in
+    .row
+      .col-sm-1.text-right
+        %strong Total Out
+      .col-sm-11
+        %p= render_btc @tx.total_out
+    .row
+      .col-sm-1.text-right
+        %strong Fee
+      .col-sm-11
+        %p= render_btc @tx.fee
+
+  - if @tx.wallet_tx?
+    %section
+      %h2 Wallet
+      .row
+        .col-sm-2.text-right
+          %strong Received Amount
+        .col-sm-10
+          %p= render_btc @tx.received_amount
 
   %section
-    %h2 Inputs
+    %h2
+      Inputs
+      %span.badge= @tx.in.size
     %table.table.table-striped.table-hover
       %thead
         %tr
@@ -46,7 +56,9 @@
             %td ?
 
   %section
-    %h2 Outputs
+    %h2
+      Outputs
+      %span.badge= @tx.out.size
     %table.table.table-striped.table-hover
       %thead
         %tr
@@ -70,4 +82,10 @@
     %h2 Raw Tx
     %pre
       = preserve JSON.pretty_generate @tx.raw
+
+  - if @tx.wallet_tx?
+    %section
+      %h2 Wallet Tx
+      %pre
+        = preserve JSON.pretty_generate @tx.wallet_tx.raw
 
