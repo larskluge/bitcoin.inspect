@@ -72,7 +72,11 @@
         - @tx.out.each do |txout|
           %tr
             %td= txout.idx
-            %td ?
+            %td
+              - if txout.spent?
+                %span.label.label-warning Spent
+              - else
+                %span.label.label-success Unspent
             %td= render_btc txout.amount
             %td= txout.addresses.join(', ')
             %td ?
