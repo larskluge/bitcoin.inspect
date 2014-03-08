@@ -9,6 +9,10 @@ set :haml, layout: true, format: :html5
 
 
 
+get '/tx/:tx.json' do
+  @tx = Tx.find params[:tx]
+  JSON.dump(@tx.raw)
+end
 get '/tx/:tx' do
   @tx = Tx.find params[:tx]
   haml :tx
