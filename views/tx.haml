@@ -79,13 +79,17 @@
             %td ?
 
   %section
-    %h2 Raw Tx
+    %h2
+      Raw Tx
+      %small getrawtransaction
     %pre
       = preserve JSON.pretty_generate @tx.raw
 
   - if @tx.wallet_tx?
     %section
-      %h2 Wallet Tx
+      %h2
+        Raw Wallet Tx
+        %small gettransaction
       %pre
         = preserve JSON.pretty_generate @tx.wallet_tx.raw
 
