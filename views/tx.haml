@@ -21,6 +21,13 @@
         %strong Fee
       .col-sm-11
         %p= render_btc @tx.fee
+    .row
+      .col-sm-1.text-right
+        %strong Size
+      .col-sm-11
+        %p
+          = @tx.size
+          bytes
 
   - if @tx.wallet_tx?
     %section
