@@ -36,7 +36,7 @@
         .col-sm-2.text-right
           %strong Received Amount
         .col-sm-10
-          %p= render_btc @tx.received_amount
+          %p= render_btc @tx.wallet_tx.amount
 
   %section
     %h2
